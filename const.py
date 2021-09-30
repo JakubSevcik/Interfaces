@@ -27,3 +27,6 @@ class ConfigNames(object):
     GROUP_BDI = 'BDI'
     GROUP_TEN_GIGABIT_ETH = 'TenGigabitEthernet'
     GROUP_GIGABIT_ETH = 'GigabitEthernet'
+
+    # DB CONN STRING
+    DB_CONN_STRING = 'dbname=testdb user=postgres password=*******'

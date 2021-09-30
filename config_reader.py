@@ -8,12 +8,12 @@ class InterfaceData(object):
     """
     Data class storing information on an interface
     """
-    def __init__(self, name='', description='', max_frame_size=None, config=None, port_channel_id=None):
+    def __init__(self, name='', description='', max_frame_size=None, config=None, port_channel=None):
         self.name = name
         self.description = description
         self.max_frame_size = max_frame_size
         self.config = config
-        self.port_channel = port_channel_id
+        self.port_channel = port_channel
 
     def __str__(self):
         return 'Name: {}, description: {}, max_frame_size: {}, config: {}, port_channel_id: {}' \
@@ -42,7 +42,7 @@ class ConfigReader(object):
         """
         self._read_from_cisco_native()
         self._read_from_openconfig_interfaces()
-        return self._port_channel_interfaces, self._interfaces
+        return list(self._port_channel_interfaces.values()), list(self._interfaces.values())
 
     def _read_from_cisco_native(self):
         """
@@ -85,7 +85,7 @@ class ConfigReader(object):
         interface_data_object = InterfaceData(name=full_name,
                                               description=description,
                                               max_frame_size=max_frame_size,
-                                              port_channel_id=port_channel)
+                                              port_channel=port_channel)
         if interface_group == ConfigNames.GROUP_PORT_CHANNEL:
             self._port_channel_interfaces[full_name] = interface_data_object
         else:

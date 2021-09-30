@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS interfaces
+(
+    config json,
+    connection integer,
+    description character varying(255),
+    id serial NOT NULL,
+    infra_type character varying(50),
+    name character varying(255) NOT NULL,
+    port_channel_id integer,
+    type character varying(50),
+    max_frame_size integer,
+    PRIMARY KEY (id)
+);
